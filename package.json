@@ -5,11 +5,12 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-tagsinput.mjs",
+  "main": "./dist/vue-tagsinput.umd.cjs",
   "module": "./dist/vue-tagsinput.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-cf": "vite --config vite-cf.config.js build",
     "prepare": "npm run build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
@@ -27,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:james095000/vue-tagsinput.git"
+    "url": "git@github.com:james090500/vue-tagsinput.git"
   },
   "bugs": {
     "url": "https://github.com/james090500/vue-tagsinput/issues"
