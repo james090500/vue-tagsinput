@@ -1,5 +1,5 @@
 {
-  "name": "@voerro/vue-tagsinput",
+  "name": "@james090500/vue-tagsinput",
   "version": "3.1.1",
   "type": "module",
   "files": [
@@ -27,9 +27,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:voerro/vue-tagsinput.git"
+    "url": "git@github.com:james095000/vue-tagsinput.git"
   },
   "bugs": {
-    "url": "https://github.com/voerro/vue-tagsinput/issues"
+    "url": "https://github.com/james090500/vue-tagsinput/issues"
   }
 }

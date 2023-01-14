@@ -1,7 +1,7 @@
-# Voerro Vue Tags Input v3
+# Vue Tags Input v3
 
-[![npm (scoped)](https://img.shields.io/npm/v/@voerro/vue-tagsinput.svg?style=flat-square)](https://www.npmjs.com/package/@voerro/vue-tagsinput)
-[![npm](https://img.shields.io/npm/dm/@voerro/vue-tagsinput.svg?style=flat-square)](https://www.npmjs.com/package/@voerro/vue-tagsinput)
+[![npm (scoped)](https://img.shields.io/npm/v/@james090500/vue-tagsinput.svg?style=flat-square)](https://www.npmjs.com/package/@james090500/vue-tagsinput)
+[![npm](https://img.shields.io/npm/dm/@james090500/vue-tagsinput.svg?style=flat-square)](https://www.npmjs.com/package/@james090500/vue-tagsinput)
 [![MIT](https://img.shields.io/github/license/AlexMordred/vue-tagsinput.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A simple tags input with typeahead built with Vue3.
@@ -9,20 +9,20 @@ A simple tags input with typeahead built with Vue3.
 ![](demo.gif)
 ![](demo2.gif)
 
-[**Live Demo**](https://voerro.github.io/vue-tagsinput/)
+[**Live Demo**](https://james090500.github.io/vue-tagsinput/)
 
 ## Installation via NPM
 
 ```
-npm i @voerro/vue-tagsinput
+npm i @james090500/vue-tagsinput
 ```
 
 Then register the component with Vue:
 
 ```javascript
-import VoerroTagsInput from '@voerro/vue-tagsinput';
+import VueTagsInput from '@james090500/vue-tagsinput';
 
-Vue.component('tags-input', VoerroTagsInput);
+Vue.component('tags-input', VueTagsInput);
 ```
 
 Include the `dist/style.css` file on your page to apply the styling. You can use CDN, `require()` it inside your JS code, or `@include` it inside your (S)CSS assets. Read the `Styling` section to learn how to customize the appearance.
@@ -33,12 +33,12 @@ If you're not using NPM, you can include the required files into your page manua
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.7.1/dist/voerro-vue-tagsinput.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@james090500/vue-tagsinput@2.7.1/dist/james090500-vue-tagsinput.js"></script>
 
 <script>
     new Vue({
         el: '#app',
-        components: { "tags-input": VoerroTagsInput },
+        components: { "tags-input": VueTagsInput },
     });
 </script>
 ```
@@ -46,10 +46,10 @@ If you're not using NPM, you can include the required files into your page manua
 Include the CSS file on your page to apply the styling. Read the `Styling` section to learn how to customize the appearance.
 
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@2.7.1/dist/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@james090500/vue-tagsinput@2.7.1/dist/style.css">
 ```
 
-**IMPORTANT:** Always grab the latest versions of the package from [JSDELIVR](https://www.jsdelivr.com/package/npm/@voerro/vue-tagsinput?path=dist), the ones provided in the examples above might be outdated. Same goes for Vue.js.
+**IMPORTANT:** Always grab the latest versions of the package from [JSDELIVR](https://www.jsdelivr.com/package/npm/@james090500/vue-tagsinput?path=dist), the ones provided in the examples above might be outdated. Same goes for Vue.js.
 
 ## Usage
 
@@ -94,7 +94,7 @@ You can pre-set the value of this variable:
 new Vue({
     el: '#app',
 
-    components: { VoerroTagsInput },
+    components: { VueTagsInput },
 
     data: {
         selectedTags: [
@@ -111,7 +111,7 @@ new Vue({
 new Vue({
     el: '#app',
 
-    components: { VoerroTagsInput },
+    components: { VueTagsInput },
 
     data: {
         selectedTags: [],
@@ -204,7 +204,7 @@ Event | Description
 @change | Fired when the input text changes
 
 ```html
-<voerro-tags-input
+<vue-tags-input
     ...
     @initialized="onInitialized"
     @tag-added="onTagAdded"
@@ -216,7 +216,7 @@ Event | Description
     @focus="onFocus"
     @blur="onBlur"
     @change="onChange"
-></voerro-tags-input>
+></vue-tags-input>
 ```
 
 ```javascript

@@ -9,7 +9,7 @@ export default defineConfig({
     cssCodeSplit: false,
     lib: {
       entry: "./src/index.js",
-      name: "@voerro/vue-tagsinput",
+      name: "@james090500/vue-tagsinput",
       fileName: "vue-tagsinput",
     },
     rollupOptions: {

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
-    <title>@voerro/vue-tagsinput</title>
+    <title>@james090500/vue-tagsinput</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/bulma.min.css">
@@ -46,23 +46,25 @@
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">@voerro/vue-tagsinput</h1>
+                <h1 class="title">@james090500/vue-tagsinput</h1>
 
                 <h2 class="subtitle">
                     Tags input for Vue 3 by
-                    <a href="http://voerro.com">Voerro</a>
+                    <a href="https://james090500.com">james090500</a>
+                    <br>
+                    <small>Fork from Vue2 work by <a href="http://voerro.com">Voerro</a></small>
                 </h2>
             </div>
         </div>
     </section>
 
-    <div id="voerro-tags-input-demo-vqk6etkfjrcpsjg5">
+    <div id="vue-tagsinput-app">
 
         <div style="padding: 2rem;">
             <div class="columns">
                 <div class="column is-3">
                     <h2 class="is-size-4" style="margin-bottom: 1rem;">
-                        <a href="https://github.com/voerro/vue-tagsinput" target="_blank">Documentation</a>
+                        <a href="https://github.com/james090500/vue-tagsinput" target="_blank">Documentation</a>
                     </h2>
 
                     <h2 class="is-size-4" style="margin-bottom: 1rem;">Options</h2>
@@ -230,7 +232,7 @@
                 </div>
 
                 <div class="column is-9">
-                    <voerro-tags-input
+                    <vue-tags-input
                         v-model="selectedTags"
                         element-id="tags"
                         :existing-tags="[
@@ -271,7 +273,7 @@
                         @tags-updated="onTagsUpdated"
                         @change="onChange"
                         discard-search-text="Add New Tag"
-                    ></voerro-tags-input>
+                    ></vue-tags-input>
 
                     <hr>
 
@@ -291,7 +293,7 @@
                         The `display-field` prop in action. You can provide any custom HTML for your dropdown rows and style them any way you want.
                     </p>
 
-                    <voerro-tags-input
+                    <vue-tags-input
                         v-model="selectedTags2"
                         element-id="tags2"
                         :existing-tags="[
@@ -307,7 +309,7 @@
                         :only-existing-tags="true"
                         :case-sensitive-tags="false"
                         display-field="display"
-                    ></voerro-tags-input>
+                    ></vue-tags-input>
                 </div>
             </div>
         </div>
@@ -317,7 +319,7 @@
     <script type="module">
         import { createApp } from 'vue/dist/vue.esm-bundler'
         createApp({
-            components: { VoerroTagsInput },
+            components: { VueTagsInput },
             data() {
                 return {
                     selectedTags: [
@@ -385,7 +387,7 @@
                     }
                 },
             }
-        }).mount('#voerro-tags-input-demo-vqk6etkfjrcpsjg5');
+        }).mount('#vue-tagsinput-app');
     </script>
 </body>
 </html>

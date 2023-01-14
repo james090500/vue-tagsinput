@@ -762,7 +762,7 @@ export default {
       if (this.modelValue && this.modelValue.length) {
         if (!Array.isArray(this.modelValue)) {
           console.error(
-            "Voerro Tags Input: the v-model modelValue must be an array!"
+            "Vue Tags Input: the v-model modelValue must be an array!"
           );
 
           return;
