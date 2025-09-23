@@ -1,124 +1,130 @@
 <template>
-  <div class="tags-input-root" style="position: relative">
     <div
-      :class="{
-        [wrapperClass + ' tags-input']: true,
-        active: isActive,
-        disabled: disabled,
-      }"
+        class="tags-input-root"
+        style="position: relative"
     >
-      <span
-        v-for="(tag, index) in tags"
-        :key="index"
-        class="tags-input-badge tags-input-badge-pill tags-input-badge-selected-default"
-        :class="{ disabled: disabled }"
-      >
-        <slot
-          name="selected-tag"
-          :tag="tag"
-          :index="index"
-          :removeTag="removeTag"
+        <div
+            :class="{
+                [wrapperClass + ' tags-input']: true,
+                active: isActive,
+                disabled: disabled,
+            }"
         >
-          <span v-html="tag[textField]"></span>
+            <span
+                v-for="(tag, index) in tags"
+                :key="index"
+                class="tags-input-badge tags-input-badge-pill tags-input-badge-selected-default"
+                :class="{ disabled: disabled }"
+            >
+                <slot
+                    name="selected-tag"
+                    :tag="tag"
+                    :index="index"
+                    :remove-tag="removeTag"
+                >
+                    <span v-html="tag[textField]" />
 
-          <a
-            v-show="!disabled"
-            href="#"
-            class="tags-input-remove"
-            @click.prevent="removeTag(index)"
-          ></a>
-        </slot>
-      </span>
+                    <a
+                        v-show="!disabled"
+                        href="#"
+                        class="tags-input-remove"
+                        @click.prevent="removeTag(index)"
+                    />
+                </slot>
+            </span>
 
-      <input
-        type="text"
-        ref="taginput"
-        :id="inputId"
-        :name="inputId"
-        :placeholder="placeholder"
-        :value="input"
-        @input="(e) => (input = e.target.value)"
-        v-show="!hideInputField"
-        @compositionstart="composing = true"
-        @compositionend="composing = false"
-        @keydown.enter.prevent="tagFromInput(false)"
-        @keydown.delete="removeLastTag"
-        @keydown.down="nextSearchResult"
-        @keydown.up="prevSearchResult"
-        @keydown="onKeyDown"
-        @keyup="onKeyUp"
-        @keyup.esc="clearSearchResults"
-        @focus="onFocus"
-        @click="onClick"
-        @blur="onBlur"
-        @value="tags"
-      />
+            <input
+                type="text"
+                ref="taginput"
+                :id="inputId"
+                :name="inputId"
+                :placeholder="placeholder"
+                :value="input"
+                @input="(e) => (input = e.target.value)"
+                v-show="!hideInputField"
+                @compositionstart="composing = true"
+                @compositionend="composing = false"
+                @keydown.enter.prevent="tagFromInput(false)"
+                @keydown.delete="removeLastTag"
+                @keydown.down="nextSearchResult"
+                @keydown.up="prevSearchResult"
+                @keydown="onKeyDown"
+                @keyup="onKeyUp"
+                @keyup.esc="clearSearchResults"
+                @focus="onFocus"
+                @click="onClick"
+                @blur="onBlur"
+                @value="tags"
+            >
 
-      <div style="display: none" v-if="elementId">
-        <input
-          v-for="(tag, index) in tags"
-          :key="index"
-          type="hidden"
-          :name="`${elementId}[]`"
-          :value="hiddenInputValue(tag)"
-        />
-      </div>
+            <div
+                style="display: none"
+                v-if="elementId"
+            >
+                <input
+                    v-for="(tag, index) in tags"
+                    :key="index"
+                    type="hidden"
+                    :name="`${elementId}[]`"
+                    :value="hiddenInputValue(tag)"
+                >
+            </div>
+        </div>
+
+        <!-- Typeahead/Autocomplete -->
+        <div v-show="searchResults.length">
+            <p
+                v-if="typeaheadStyle === 'badges'"
+                :class="`typeahead-${typeaheadStyle}`"
+            >
+                <span
+                    v-if="!typeaheadHideDiscard"
+                    class="tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default"
+                    @click.prevent="clearSearchResults(true)"
+                    v-text="discardSearchText"
+                />
+
+                <span
+                    v-for="(tag, index) in searchResults"
+                    :key="index"
+                    v-html="tag[textField]"
+                    @mouseover="searchSelection = index"
+                    @mousedown.prevent="tagFromSearchOnClick(tag)"
+                    class="tags-input-badge"
+                    :class="{
+                        'tags-input-typeahead-item-default': index != searchSelection,
+                        'tags-input-typeahead-item-highlighted-default':
+                            index == searchSelection,
+                    }"
+                />
+            </p>
+
+            <ul
+                v-else-if="typeaheadStyle === 'dropdown'"
+                :class="`typeahead-${typeaheadStyle}`"
+            >
+                <li
+                    v-if="!typeaheadHideDiscard"
+                    class="tags-input-typeahead-item-default typeahead-hide-btn"
+                    @click.prevent="clearSearchResults(true)"
+                    v-text="discardSearchText"
+                />
+
+                <li
+                    v-for="(tag, index) in searchResults"
+                    :key="index"
+                    v-html="getDisplayField(tag)"
+                    @mouseover="searchSelection = index"
+                    @mousedown.prevent="tagFromSearchOnClick(tag)"
+                    :class="{
+                        'tags-input-typeahead-item-default': index != searchSelection,
+                        'tags-input-typeahead-item-highlighted-default':
+                            index == searchSelection,
+                    }"
+                />
+            </ul>
+        </div>
     </div>
-
-    <!-- Typeahead/Autocomplete -->
-    <div v-show="searchResults.length">
-      <p
-        v-if="typeaheadStyle === 'badges'"
-        :class="`typeahead-${typeaheadStyle}`"
-      >
-        <span
-          v-if="!typeaheadHideDiscard"
-          class="tags-input-badge typeahead-hide-btn tags-input-typeahead-item-default"
-          @click.prevent="clearSearchResults(true)"
-          v-text="discardSearchText"
-        ></span>
-
-        <span
-          v-for="(tag, index) in searchResults"
-          :key="index"
-          v-html="tag[textField]"
-          @mouseover="searchSelection = index"
-          @mousedown.prevent="tagFromSearchOnClick(tag)"
-          class="tags-input-badge"
-          v-bind:class="{
-            'tags-input-typeahead-item-default': index != searchSelection,
-            'tags-input-typeahead-item-highlighted-default':
-              index == searchSelection,
-          }"
-        ></span>
-      </p>
-
-      <ul
-        v-else-if="typeaheadStyle === 'dropdown'"
-        :class="`typeahead-${typeaheadStyle}`"
-      >
-        <li
-          v-if="!typeaheadHideDiscard"
-          class="tags-input-typeahead-item-default typeahead-hide-btn"
-          @click.prevent="clearSearchResults(true)"
-          v-text="discardSearchText"
-        ></li>
-
-        <li
-          v-for="(tag, index) in searchResults"
-          :key="index"
-          v-html="getDisplayField(tag)"
-          @mouseover="searchSelection = index"
-          @mousedown.prevent="tagFromSearchOnClick(tag)"
-          v-bind:class="{
-            'tags-input-typeahead-item-default': index != searchSelection,
-            'tags-input-typeahead-item-highlighted-default':
-              index == searchSelection,
-          }"
-        ></li>
-      </ul>
-    </div>
-  </div>
 </template>
 
 <script>

@@ -9,7 +9,7 @@ A simple tags input with typeahead built with Vue3.
 ![](demo.gif)
 ![](demo2.gif)
 
-[**Live Demo**](https://vue-tagsinput.pages.dev/)
+[**Live Demo**](https://vue-tagsinput.james090500.workers.dev/)
 
 ## Installation via NPM
 
