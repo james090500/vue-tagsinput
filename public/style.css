@@ -15,17 +15,17 @@
     outline: none;
 }
 
-.tags-input input[type="text"] {
+.tags-input input[type='text'] {
     color: #495057;
 }
 
 .tags-input-wrapper-default {
-    padding: .5em .25em;
+    padding: 0.5em 0.25em;
 
     background: #fff;
 
     border: 1px solid transparent;
-    border-radius: .25em;
+    border-radius: 0.25em;
     border-color: #dbdbdb;
 }
 
@@ -54,7 +54,8 @@
     outline: none;
 }
 
-.tags-input-remove:before, .tags-input-remove:after {
+.tags-input-remove:before,
+.tags-input-remove:after {
     content: '';
     position: absolute;
     width: 75%;
@@ -110,7 +111,7 @@
 
 /* Typeahead - badges */
 .typeahead-badges > span {
-    margin-top: .5em;
+    margin-top: 0.5em;
 }
 
 .typeahead-badges > span {
@@ -129,7 +130,7 @@
 }
 
 .typeahead-dropdown li {
-    padding: .25em 1em;
+    padding: 0.25em 1em;
     cursor: pointer;
 }
 

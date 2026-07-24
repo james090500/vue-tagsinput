@@ -1,5 +1,5 @@
-import VueTagsInput from "./VueTagsInput.vue";
+import VueTagsInput from './VueTagsInput.vue'
 
-window.VueTagsInput = VueTagsInput;
+window.VueTagsInput = VueTagsInput
 
-export default VueTagsInput;
+export default VueTagsInput
