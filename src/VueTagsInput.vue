@@ -136,7 +136,7 @@ export default {
             default: null,
         },
         inputClass: {
-            type: String,
+            type: [String, Object, Array],
             default: null,
         },
         existingTags: {
